@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center align-items-center vh-100"
+     style="background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb); min-height:100vh;">
+  <div class="card shadow rounded-4 p-4" style="max-width: 400px; width: 100%;">
+    <h3 class="text-center fw-bold mb-4"
+        style="background: linear-gradient(90deg, #ff6a00, #ee0979); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      Welcome Back
+    </h3>
+
+    <form (ngSubmit)="loginUser()">
+      <div class="mb-3">
+        <label for="email" class="form-label fw-semibold text-primary">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="email" name="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label fw-semibold text-primary">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+      </div>
+
+      <div class="mb-3 text-end">
+        <a routerLink="/forgotpassword" class="text-warning text-decoration-none">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+    </form>
+
+    <p class="text-center">
+      Don't have an account?
+      <a routerLink="/register" class="text-warning text-decoration-none">Register</a>
+    </p>
+  </div>
+</div>
+<router-outlet></router-outlet>
