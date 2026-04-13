@@ -23,7 +23,10 @@ loginUser() {
   ) {
     console.log('Login successful');
     this.router.navigate(['/home']);
-  } else {
+  } else if (this.email === '' || this.password === '') {
+    alert('Please enter both email and password');
+  }
+  else {
     console.log('Invalid credentials');
     alert('Email or password is incorrect');
   }

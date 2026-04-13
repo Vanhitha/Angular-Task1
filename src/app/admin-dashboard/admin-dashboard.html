@@ -654,7 +654,7 @@
           <h4>$64,522.24</h4>
 
          
-          <canvas id="earningsChart" height="50"></canvas>
+          <canvas id="earningsChart" height="32"></canvas>
         </div>
       </div>
 
@@ -662,9 +662,10 @@
         <div class="card-body">
           <h6>Total Expenses</h6>
           <h4>$60,522.24</h4>
+          <!-- <i class="add"></i> -->
 
           
-          <canvas id="expensesChart" height="50"></canvas>
+          <canvas id="expensesChart" height="32"></canvas>
         </div>
       </div>
     </div>
@@ -678,7 +679,7 @@
             <small>Total Fees Collected</small>
             <h5>$25,000.02</h5>
           </div>
-          <span style="background-color: rgb(245, 133, 133);">+1.2%</span>
+          <span style="background-color: rgb(218, 248, 206); height: fit-content; color: green;">+1.2%</span>
         </div>
       </div>
 
@@ -688,7 +689,7 @@
             <small>Fine Collected till date</small>
             <h5>$4,56.64</h5>
           </div>
-          <span class="badge bg-danger">-1.2%</span>
+          <span  style=" background-color: rgb(244, 194, 194); height: fit-content; color: crimson; ">-1.2%</span>
         </div>
       </div>
 
@@ -698,7 +699,7 @@
             <small>Student Not Paid</small>
             <h5>$545</h5>
           </div>
-          <span class="badge bg-primary">+1.2%</span>
+          <span  style=" background-color: rgb(206, 247, 248); height: fit-content; color:blue;">+1.2%</span>
         </div>
       </div>
 
@@ -708,12 +709,126 @@
             <small>Total Outstanding</small>
             <h5>$4,56.64</h5>
           </div>
-          <span class="badge bg-danger">-1.2%</span>
+          <span  style=" background-color: rgb(244, 194, 194); height: fit-content; color: crimson; ">-1.2%</span>
         </div>
       </div>
 
     </div>
 
+  </div>
+
+</div>
+<div class="container-fluid p-3">
+
+  <!-- Notice Board -->
+  <div class="card mb-3">
+    <div class="card-header d-flex justify-content-between">
+      <strong>Notice Board</strong>
+      <a href="#">View All</a>
+    </div>
+
+    <div class="list-group list-group-flush">
+
+      <div class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let notice of notices">
+        <div class="d-flex gap-3">
+          <div class="icon-circle bg-light">
+            <i class="bi bi-file-earmark-text"></i>
+          </div>
+          <div>
+            <div class="fw-semibold">{{ notice.title }}</div>
+            <small class="text-muted">Added on : {{ notice.date }}</small>
+          </div>
+        </div>
+        <span class="badge bg-light text-dark">{{ notice.days }} Days</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Middle Section -->
+  <div class="row g-3">
+
+    <!-- Top Subjects -->
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header d-flex justify-content-between">
+          <strong>Top Subjects</strong>
+          <span class="text-muted">Class III</span>
+        </div>
+
+        <div class="card-body">
+
+          <div class="alert alert-success py-2">
+            These Result are obtained from the syllabus completion on the respective Class
+          </div>
+
+          <div *ngFor="let subject of subjects" class="mb-3">
+            <div class="d-flex justify-content-between">
+              <small>{{ subject.name }}</small>
+            </div>
+            <div class="progress" style="height:6px;">
+              <div class="progress-bar"
+                   [style.width.%]="subject.value"
+                   [ngClass]="subject.color">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Activity -->
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header d-flex justify-content-between">
+          <strong>Student Activity</strong>
+          <span class="text-muted">This Month</span>
+        </div>
+
+        <div class="card-body">
+
+          <div *ngFor="let activity of activities" class="activity-item d-flex align-items-center mb-3">
+            <img [src]="activity.image" class="rounded me-3" width="45" height="45">
+            <div>
+              <div class="fw-semibold">{{ activity.title }}</div><br>
+              <small class="text-muted">{{ activity.desc }}</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Todo -->
+  <div class="card mt-3">
+    <div class="card-header d-flex justify-content-between">
+      <strong>Todo</strong>
+      <span class="text-muted">Today</span>
+    </div>
+
+    <div class="list-group list-group-flush">
+
+      <div *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <input type="checkbox" class="form-check-input me-2">
+          <span [class.text-decoration-line-through]="task.completed">{{ task.title }}</span>
+          <div><small class="text-muted">{{ task.time }}</small></div>
+        </div>
+
+        <span class="badge"
+              [ngClass]="{
+                'bg-success': task.status === 'Completed',
+                'bg-info': task.status === 'Inprogress',
+                'bg-warning text-dark': task.status === 'Yet To Start'
+              }">
+          {{ task.status }}
+        </span>
+      </div>
+
+    </div>
   </div>
 
 </div>
