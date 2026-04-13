@@ -9,18 +9,24 @@ import { Router } from '@angular/router';
 })
 export class Login {
  
-  email: string = '';
-  password: string = '';
+email: string = '';
+password: string = '';
 
-  constructor(private router: Router) {}
+constructor(private router: Router) {}
 
-  loginUser() {
-    // Normally here you would call an API to check credentials
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
+loginUser() {
+  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
 
-    // For now, route to home page
+  if (
+    this.email === storedUser.email &&
+    this.password === storedUser.password
+  ) {
+    console.log('Login successful');
     this.router.navigate(['/home']);
+  } else {
+    console.log('Invalid credentials');
+    alert('Email or password is incorrect');
   }
+}
 }
 
