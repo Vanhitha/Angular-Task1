@@ -8,8 +8,17 @@
 
     <form (ngSubmit)="registerUser()">
       <div class="mb-3">
-        <label for="fullname" class="form-label fw-semibold text-primary">Full Name</label>
-        <input type="text" class="form-control" id="fullname" placeholder="Enter full name" [(ngModel)]="fullname" name="fullname" required>
+        <label for="firstname" class="form-label fw-semibold text-primary">First Name</label>
+        <input type="text" class="form-control" id="firstname" placeholder="Enter first name" [(ngModel)]="firstname" name="firstname" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="lastname" class="form-label fw-semibold text-primary">Last Name</label>
+        <input type="text" class="form-control" id="lastname" placeholder="Enter last name" [(ngModel)]="lastname" name="lastname" required>
+      </div>
+      <div class="mb-3">
+        <label for="UserName" class="form-label fw-semibold text-primary">User Name</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter user name" [(ngModel)]="username" name="username" required>
       </div>
 
       <div class="mb-3">

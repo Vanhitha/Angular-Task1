@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
   
 })
 export class Register {
-  fullname: string = '';
+  firstname: string = '';
+  lastname: string = '';
+  username: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -17,7 +19,7 @@ export class Register {
   constructor(private route:Router) {}
 
   registerUser() {
-    if (!this.fullname || !this.email || !this.password || !this.confirmPassword) {
+    if (!this.firstname || !this.lastname || !this.username || !this.email || !this.password || !this.confirmPassword) {
       alert('All fields are required!');
       return;
     }
@@ -29,7 +31,9 @@ export class Register {
 
 
     const user = {
-      fullname: this.fullname,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      username: this.username,
       email: this.email,
       password: this.password
     };

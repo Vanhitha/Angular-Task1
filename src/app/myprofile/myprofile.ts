@@ -32,13 +32,15 @@ export class Myprofile implements OnInit {
   ngOnInit(): void {
     this.loadUser();
     this.loadAddress();
-    if (isPlatformBrowser(this.platformId)) {
-    const savedImage = localStorage.getItem('profileImage');
-    if (savedImage) {
-      this.imagePreview = savedImage;
+
+  if (isPlatformBrowser(this.platformId)) {
+    const data = localStorage.getItem('user');
+    if (data) {
+      const user = JSON.parse(data);
+      this.imagePreview = user.profileImage || null;
     }
   }
-  }
+}
 
   
   loadUser() {
@@ -128,17 +130,7 @@ selectedFile: File | null = null;
   }
 
   // Handle drag & drop (optional, if used in HTML)
-  onDrop(event: DragEvent): void {
-    event.preventDefault();
-    if (event.dataTransfer?.files.length) {
-      const file = event.dataTransfer.files[0];
-      this.handleFile(file);
-    }
-  }
-
-  onDragOver(event: DragEvent): void {
-    event.preventDefault();
-  }
+  
 
  
  handleFile(file: File): void {
@@ -166,11 +158,19 @@ selectedFile: File | null = null;
 }
 
   
-  removeImage(event: Event): void {
-    event.preventDefault();
-    this.selectedFile = null;
-    this.imagePreview = null;
-  }
+removeImage(event: Event): void {
+  event.preventDefault();
+
+  this.selectedFile = null;
+  this.imagePreview = null;
+
+  const data = localStorage.getItem('user');
+  let user = data ? JSON.parse(data) : {};
+
+  user.profileImage = null;
+
+  this.userService.setUser(user);
+}
 
   
   uploadProfileImage(): void {
@@ -186,12 +186,5 @@ selectedFile: File | null = null;
 
     alert('File ready to upload!');
   }
-  onload(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const savedImage = localStorage.getItem('profileImage');
-      if (savedImage) {
-        this.imagePreview = savedImage;
-      }
-    }
-  }
+ 
 }

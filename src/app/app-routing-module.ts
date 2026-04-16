@@ -9,6 +9,7 @@ import path from 'path';
 import { Home } from './home/home';
 import { AdminDashboard } from './admin-dashboard/admin-dashboard';
 import { Myprofile } from './myprofile/myprofile';
+import { ProfileSettings } from './profile-settings/profile-settings';
 
 const routes: Routes = [
   {path:"",component:Login},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"home",component:Home ,children: [
       { path: 'admindashboard', component: AdminDashboard },
        {path:"myprofile",component:Myprofile},
+       {path:"profile-settings",component:ProfileSettings}
     ]},
   {path:"admindashboard",component:AdminDashboard},
   {path:"**",component:Pagemnotfound}

@@ -18,9 +18,10 @@
           width="80" 
           height="80"
           alt="Profile"/>
-
-        
-      </div>
+          <span> Edit Your Photo</span>
+          
+          
+        </div>
 
       <!-- Upload Box -->
       <div class="border border-2 rounded p-5 text-center"
@@ -90,6 +91,13 @@
             <input class="form-control"
                    [(ngModel)]="user.email"
                    disabled>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label>User Name</label>
+            <input class="form-control"
+                   [(ngModel)]="user.username"
+                   {{user.username}}
+                   [disabled]="!editMode">
           </div>
 
          

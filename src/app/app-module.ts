@@ -11,12 +11,14 @@ import { Login } from './login/login';
 import { Register } from './register/register';
 import { ForgotPassword } from './forgot-password/forgot-password';
 import { Pagemnotfound } from './pagemnotfound/pagemnotfound';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Home } from './home/home';
 import { Sidebar } from './sidebar/sidebar';
 import { Header } from './header/header';
 import { AdminDashboard } from './admin-dashboard/admin-dashboard';
 import { Myprofile } from './myprofile/myprofile';
+import { ProfileSettings } from './profile-settings/profile-settings';
+import { Settings } from './settings/settings';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,10 @@ import { Myprofile } from './myprofile/myprofile';
     Header,
     AdminDashboard,
     Myprofile,
+    ProfileSettings,
+    Settings,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideClientHydration(withEventReplay()),
