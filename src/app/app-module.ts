@@ -20,6 +20,8 @@ import { Myprofile } from './myprofile/myprofile';
 import { ProfileSettings } from './profile-settings/profile-settings';
 import { Settings } from './settings/settings';
 import { Securitysetings } from './securitysetings/securitysetings';
+import { AddStudent } from './add-student/add-student';
+// import { AddDetailsPopup } from './add-details-popup/add-details-popup';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { Securitysetings } from './securitysetings/securitysetings';
     ProfileSettings,
     Settings,
     Securitysetings,
+    AddStudent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [

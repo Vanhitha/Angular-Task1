@@ -29,9 +29,53 @@
     </button>
 
    
-    <button class="btn btn-light border">
-      <i class="bi bi-plus-circle"></i>
-    </button>
+    <div class="dropdown">
+  <button class="btn btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">
+    <i class="bi bi-plus-circle"></i>
+  </button>
+
+  <div class="dropdown-menu p-3" style="min-width: 250px;">
+    <h3 class="dropdown-header">Add New</h3>
+      <hr>
+    
+    <div class="d-flex flex-wrap gap-2">
+      
+    <a routerLink="/home/add-student" class="flex-fill text-center" style="width: 48%; background-color: rgb(236, 235, 255); padding: 15px; text-decoration: none; color: inherit;">
+         <div class="Student-logo" style="background-color: rgb(54, 63, 244); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="bi bi-mortarboard fs-4 text-white"></i>
+        </div>
+        <div>Students</div>
+      </a>  
+    
+
+      
+      <div class="flex-fill text-center" style="width: 48%; background-color: rgb(237, 247, 237); padding: 15px;">
+         <div class="Teacher-logo" style="background-color: rgb(76, 175, 80); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="bi bi-people fs-4 text-white"></i>
+        </div>
+        <div>Teachers</div>
+      </div>
+
+   
+      <div class="flex-fill text-center" style="width: 48%; background-color: rgb(255, 249, 196); padding: 15px;">
+         <div class="Staff-logo" style="background-color: rgb(255, 235, 59); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="bi bi-people-fill fs-4 text-white"></i>
+        </div>
+        <div>Staffs</div>
+      </div>
+
+      
+      <div class="flex-fill text-center" style="width: 48%; background-color: rgb(227, 242, 253); padding: 15px;">
+         <div class="Invoice-logo" style="background-color: rgb(33, 150, 243); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="bi bi-receipt fs-4 text-white"></i>
+        </div>
+        <div>Invoice</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
     
     <button class="btn btn-light border">

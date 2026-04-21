@@ -1,0 +1,484 @@
+<div class="container mt-4">
+  <h3 class="mb-4">Add Student</h3>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+    <!-- Personal Information -->
+    <div class="card mb-4">
+<div class="card-header bg-light fw-semibold">
+<i class="bi bi-person me-2"></i> Personal Information
+</div>
+ 
+  <div class="card-body">
+ 
+    <!-- Upload Section -->
+<div class="d-flex align-items-center gap-3 mb-4">
+ 
+      <!-- Image Box -->
+<div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
+<img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
+     style="width:100%;height:100%;object-fit:cover;">
+<i *ngIf="!studentImage" class="bi bi-image"></i>
+</div>
+ 
+<div>
+<input type="file"
+       class="form-control mb-2"
+       style="width:100px;"
+       (change)="onFileSelected($event)">
+<button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
+<button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
+<div class="text-muted small mt-1">
+          Upload image size 4MB, Format JPG, PNG, SVG
+</div>
+</div>
+ 
+    </div>
+ 
+    <!-- Form Fields -->
+<div class="row g-3">
+ 
+      <div class="col-md-3">
+<label class="form-label">Academic Year</label>
+<select class="form-select">
+<option>June 2024/25</option>
+</select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Admission Number</label>
+<input class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Admission Date</label>
+<input type="date" class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Roll Number</label>
+<input class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Status</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">First Name</label>
+<input class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Last Name</label>
+<input class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Class</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Section</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Gender</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Date of Birth</label>
+<input type="date" class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Blood Group</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">House</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Religion</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Category</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Primary Contact Number</label>
+<input class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Email Address</label>
+<input class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Caste</label>
+<input class="form-control">
+</div>
+ 
+      <div class="col-md-3">
+<label class="form-label">Mother Tongue</label>
+<select class="form-select"><option>Select</option></select>
+</div>
+ 
+      <!-- Language Known (Tags UI) -->
+<div class="col-md-3">
+<label class="form-label">Language Known</label>
+<div class="form-control d-flex flex-wrap gap-2">
+<span class="badge bg-secondary">English ✕</span>
+<span class="badge bg-secondary">Spanish ✕</span>
+</div>
+</div>
+ 
+    </div>
+ 
+  </div>
+</div>
+
+    <!-- Parents & Guardian Information -->
+    <div class="card mb-3">
+      <div class="card-header">Parents & Guardian Information</div>
+      <div class="card p-3 mb-4">
+ 
+  <!-- Father Info -->
+<h5 class="mb-3">Father's Info</h5>
+ 
+  <div class="d-flex align-items-center mb-3 gap-3">
+<div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
+<img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
+     style="width:100%;height:100%;object-fit:cover;">
+<i *ngIf="!studentImage" class="bi bi-image"></i>
+</div>
+ 
+    <div>
+<input type="file"
+       class="form-control mb-2"
+       style="width:100px;"
+       (change)="onFileSelected1($event)"> 
+<button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
+<button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
+<div class="text-muted small mt-1">Upload image size 4MB, Format JPG, PNG, SVG</div>
+</div>
+</div>
+ 
+  <div class="row g-3 mb-4">
+<div class="col-md-3"><input class="form-control" placeholder="Father Name"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Email"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Phone Number"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Father Occupation"></div>
+</div>
+ 
+  
+<h5 class="mb-3">Mother's Info</h5>
+ 
+  <div class="d-flex align-items-center mb-3 gap-3">
+<div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
+<img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
+     style="width:100%;height:100%;object-fit:cover;">
+<i *ngIf="!studentImage" class="bi bi-image"></i>
+</div>
+ 
+    <div>
+<input type="file"
+       class="form-control mb-2"
+       style="width:100px;"
+       (change)="onFileSelected2($event)">
+<button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
+<button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
+<div class="text-muted small mt-1">Upload image size 4MB, Format JPG, PNG, SVG</div>
+</div>
+</div>
+ 
+  <div class="row g-3 mb-4">
+<div class="col-md-3"><input class="form-control" placeholder="Mother Name"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Email"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Phone Number"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Mother Occupation"></div>
+</div>
+ 
+ 
+<h5 class="mb-3">Guardian Details</h5>
+ 
+  <div class="mb-3">
+<label class="me-3">If Guardian is:</label>
+<input type="radio" name="guardian"> Parents
+<input type="radio" name="guardian" class="ms-2"> Guardian
+<input type="radio" name="guardian" class="ms-2"> Others
+</div>
+ 
+  <div class="d-flex align-items-center mb-3 gap-3">
+<div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
+<img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
+     style="width:100%;height:100%;object-fit:cover;">
+<i *ngIf="!studentImage" class="bi bi-image"></i>
+</div>
+ 
+    <div>
+<input type="file"
+       class="form-control mb-2"
+       style="width:100px;"
+       (change)="onFileSelected3($event)">
+<button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
+<button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
+<div class="text-muted small mt-1">Upload image size 4MB, Format JPG, PNG, SVG</div>
+</div>
+</div>
+ 
+  <div class="row g-3">
+<div class="col-md-3"><input class="form-control" placeholder="Guardian Name"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Guardian Relation"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Phone Number"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Email"></div>
+ 
+    <div class="col-md-3"><input class="form-control" placeholder="Occupation"></div>
+<div class="col-md-3"><input class="form-control" placeholder="Address"></div>
+</div>
+ 
+</div>
+    </div>
+
+   
+<div class="card mb-4">
+<div class="card-header bg-light fw-semibold">Siblings</div>
+<div class="card-body">
+ 
+    <div class="mb-3">
+<label class="me-3">Is Sibling studying in same school</label>
+<input type="radio" name="sibling" checked> Yes
+<input type="radio" name="sibling" class="ms-3"> No
+</div>
+ 
+    <div class="row g-3 mb-3">
+<div class="col-md-3">
+<select class="form-select"><option>Select Name</option></select>
+</div>
+<div class="col-md-3">
+<select class="form-select"><option>Roll No</option></select>
+</div>
+<div class="col-md-3">
+<select class="form-select"><option>Admission No</option></select>
+</div>
+<div class="col-md-3 d-flex align-items-center">
+<select class="form-select"><option>Class</option></select>
+<span class="ms-2 text-danger" style="cursor:pointer;"><i class="bi bi-trash"></i></span>
+</div>
+</div>
+ 
+    <button class="btn btn-primary btn-sm">
+      + Add New
+</button>
+ 
+  </div>
+</div>
+ 
+
+<div class="card mb-4">
+<div class="card-header bg-light fw-semibold">Address</div>
+<div class="card-body row g-3">
+ 
+    <div class="col-md-6">
+<input class="form-control" placeholder="Current Address">
+</div>
+ 
+    <div class="col-md-6">
+<input class="form-control" placeholder="Permanent Address">
+</div>
+ 
+  </div>
+</div>
+ 
+
+<div class="card mb-4">
+<div class="card-header bg-light d-flex justify-content-between">
+<span class="fw-semibold">Transport Information</span>
+<input type="checkbox" class="form-check-input">
+</div>
+ 
+  <div class="card-body row g-3">
+<div class="col-md-4">
+<select class="form-select"><option>Route</option></select>
+</div>
+<div class="col-md-4">
+<select class="form-select"><option>Vehicle Number</option></select>
+</div>
+<div class="col-md-4">
+<select class="form-select"><option>Pickup Point</option></select>
+</div>
+</div>
+</div>
+ 
+
+<div class="card mb-4">
+<div class="card-header bg-light d-flex justify-content-between">
+<span class="fw-semibold">Hostel Information</span>
+<input type="checkbox" class="form-check-input">
+</div>
+ 
+  <div class="card-body row g-3">
+<div class="col-md-6">
+<select class="form-select"><option>Hostel</option></select>
+</div>
+<div class="col-md-6">
+<select class="form-select"><option>Room No</option></select>
+</div>
+</div>
+</div>
+ 
+
+<div class="card mb-4">
+<div class="card-header bg-light fw-semibold">Documents</div>
+ 
+  <div class="card-body row g-4">
+ 
+    
+<div class="col-md-6">
+<label class="fw-semibold">Medical Condition</label>
+<div class="small text-muted mb-2">
+        Upload image size of 4MB, Accepted Format PDF
+</div>
+ 
+      <div class="d-flex align-items-center gap-2">
+<button class="btn btn-outline-primary btn-sm">Change</button>
+<span class="text-muted small">BirthCertificate.pdf</span>
+</div>
+</div>
+ 
+    
+<div class="col-md-6">
+<label class="fw-semibold">Upload Transfer Certificate</label>
+<div class="small text-muted mb-2">
+        Upload image size of 4MB, Accepted Format PDF
+</div>
+ 
+      <button class="btn btn-primary btn-sm">
+        Upload Document
+</button>
+</div>
+ 
+  </div>
+</div>
+   
+<div class="card mb-4">
+<div class="card-header bg-light fw-semibold">
+<i class="bi bi-gear me-2"></i> Medical History
+</div>
+ 
+  <div class="card-body">
+ 
+    
+<div class="mb-3">
+<label class="fw-semibold d-block mb-2">Medical Condition</label>
+ 
+      <label class="me-3">
+<input type="radio" name="condition" checked> Good
+</label>
+ 
+      <label class="me-3">
+<input type="radio" name="condition"> Bad
+</label>
+ 
+      <label>
+<input type="radio" name="condition"> Others
+</label>
+</div>
+ 
+  
+<div class="mb-3">
+<label class="fw-semibold d-block mb-2">Allergies</label>
+ 
+      <div class="form-control d-flex flex-wrap gap-2">
+<span class="badge bg-secondary">
+          Allergy ✕
+</span>
+<span class="badge bg-secondary">
+          Skin Allergy ✕
+</span>
+</div>
+</div>
+ 
+
+<div>
+<label class="fw-semibold d-block mb-2">Medications</label>
+ 
+      <div class="form-control d-flex flex-wrap gap-2">
+<span class="badge bg-secondary">
+          Medicine Name ✕
+</span>
+</div>
+</div>
+ 
+  </div>
+</div>
+ 
+
+<div class="card mb-4">
+<div class="card-header bg-light fw-semibold">
+<i class="bi bi-building me-2"></i> Previous School Details
+</div>
+ 
+  <div class="card-body row g-3">
+ 
+    <div class="col-md-6">
+<label class="fw-semibold">School Name</label>
+<input class="form-control">
+</div>
+ 
+    <div class="col-md-6">
+<label class="fw-semibold">Address</label>
+<input class="form-control">
+</div>
+ 
+  </div>
+</div>
+ 
+
+<div class="card mb-4">
+<div class="card-header bg-light fw-semibold">
+<i class="bi bi-bank me-2"></i> Other Details
+</div>
+ 
+  <div class="card-body row g-3">
+ 
+    <div class="col-md-4">
+<label class="fw-semibold">Bank Name</label>
+<input class="form-control">
+</div>
+ 
+    <div class="col-md-4">
+<label class="fw-semibold">Branch</label>
+<input class="form-control">
+</div>
+ 
+    <div class="col-md-4">
+<label class="fw-semibold">IFSC Number</label>
+<input class="form-control">
+</div>
+ 
+    <div class="col-md-12">
+<label class="fw-semibold">Other Information</label>
+<textarea class="form-control" rows="3"></textarea>
+</div>
+ 
+  </div>
+</div>
+ 
+
+<div class="d-flex justify-content-end gap-2 mb-4">
+<button class="btn btn-light">Cancel</button>
+<button class="btn btn-primary">Add Student</button>
+</div>
+    </form>
+</div>

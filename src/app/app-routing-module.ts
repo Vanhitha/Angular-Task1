@@ -13,6 +13,7 @@ import { ProfileSettings } from './profile-settings/profile-settings';
 import { Settings } from './settings/settings';
 import { Notifications } from './notifications/notifications';
 import { Securitysetings } from './securitysetings/securitysetings';
+import { AddStudent } from './add-student/add-student';
 
 const routes: Routes = [
   {path:"",component:Login},
@@ -22,13 +23,16 @@ const routes: Routes = [
  
   {path:"home",component:Home ,children: [
       { path: 'admindashboard', component: AdminDashboard },
+      {path:"add-student",component:AddStudent},
        {path:"myprofile",component:Myprofile},
        {path:"settings",component:Settings,children:[
          {path:"profile-settings",component:ProfileSettings},
+         
          {path:"security-settings",component:Securitysetings},
          {path:"notifications",component:Notifications}
        ]  }
     ]},
+    
   {path:"admindashboard",component:AdminDashboard},
   {path:"**",component:Pagemnotfound}
 ];
