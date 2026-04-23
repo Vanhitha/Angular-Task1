@@ -1,15 +1,27 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
+import { generate } from 'rxjs';
 
+interface Day {
+  date: number | null;
+  inactive: boolean;
+}
+interface EventItem {
+  title: string;
+  date: string;
+  time: string;
+  color: string;
+  users: string[];
+}
 @Component({
   selector: 'app-admin-dashboard',
   standalone: false,
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css',
 })
-export class AdminDashboard implements AfterViewInit {
+export class AdminDashboard implements AfterViewInit, OnInit {
 name = 'Admin'; 
 tabs = ['Students', 'Teachers', 'Staff']; 
 activeTab = 'Students';
@@ -56,6 +68,7 @@ tasks = [
   { title: 'Extra Class Info to Students', time: '04:55 PM', status: 'Yet To Start', completed: false }, { title: 'Fees for Upcoming Academics', time: '04:55 PM', status: 'Yet To Start', completed: false },
   { title: 'English - Essay on Visit', time: '05:55 PM', status: 'Yet To Start', completed: false }
  ];
+ 
   
 
   @ViewChild('attendanceChart') attendanceChart!: ElementRef<HTMLCanvasElement>;
@@ -64,7 +77,11 @@ tasks = [
   @ViewChild('expensesChart') expensesChart!: ElementRef<HTMLCanvasElement>;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
-
+  ngOnInit(): void {
+    this.generateCalendar();
+    this.loadEvents();
+  }
+ 
   ngAfterViewInit(): void {
   if (!isPlatformBrowser(this.platformId)) return;
 
@@ -212,5 +229,88 @@ tasks = [
         }
       }
     });
+  }
+currentDate: Date = new Date();
+  days: Day[] = [];
+  event: EventItem[] = [];
+ generateCalendar(): void {
+    this.days = [];
+
+    const year = this.currentDate.getFullYear();
+    const month = this.currentDate.getMonth();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+
+    // Fill previous month's empty days
+    for (let i = 0; i < firstDay; i++) {
+      this.days.push({ date: null, inactive: true });
+    }
+
+    // Fill current month days
+    for (let i = 1; i <= totalDays; i++) {
+      this.days.push({ date: i, inactive: false });
+    }
+
+    // Fill remaining cells (to complete week rows)
+    while (this.days.length % 7 !== 0) {
+      this.days.push({ date: null, inactive: true });
+    }
+  }
+
+  // Go to previous month
+  prevMonth(): void {
+    this.currentDate = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth() - 1,
+      1
+    );
+    this.generateCalendar();
+  }
+
+  // Go to next month
+  nextMonth(): void {
+    this.currentDate = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth() + 1,
+      1
+    );
+    this.generateCalendar();
+  }
+
+  // Sample events
+  loadEvents(): void {
+    this.event = [
+      {
+        title: 'Team Meeting',
+        date: 'Apr 25, 2026',
+        time: '10:00 AM - 11:00 AM',
+        color: 'bg-primary',
+        users: [
+          'https://i.pravatar.cc/20?img=1',
+          'https://i.pravatar.cc/20?img=2'
+        ]
+      },
+      {
+        title: 'Project Review',
+        date: 'Apr 27, 2026',
+        time: '2:00 PM - 3:30 PM',
+        color: 'bg-success',
+        users: [
+          'https://i.pravatar.cc/20?img=3',
+          'https://i.pravatar.cc/20?img=4',
+          'https://i.pravatar.cc/20?img=5'
+        ]
+      },
+      {
+        title: 'Client Call',
+        date: 'Apr 30, 2026',
+        time: '5:00 PM - 6:00 PM',
+        color: 'bg-danger',
+        users: [
+          'https://i.pravatar.cc/20?img=6'
+        ]
+      }
+    ];
   }
 }

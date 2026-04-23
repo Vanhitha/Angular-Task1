@@ -2,7 +2,7 @@
   <h3 class="mb-4">Add Student</h3>
   <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
 
-    <!-- Personal Information -->
+  
     <div class="card mb-4">
 <div class="card-header bg-light fw-semibold">
 <i class="bi bi-person me-2"></i> Personal Information
@@ -10,10 +10,10 @@
  
   <div class="card-body">
  
-    <!-- Upload Section -->
+   
 <div class="d-flex align-items-center gap-3 mb-4">
  
-      <!-- Image Box -->
+     
 <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
 <img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
      style="width:100%;height:100%;object-fit:cover;">
@@ -31,13 +31,13 @@
  
     </div>
  
-    <!-- Form Fields -->
+
 <div class="row g-3">
  
       <div class="col-md-3">
 <label class="form-label">Academic Year</label>
 <select class="form-select">
-<option>June 2024/25</option>
+<option>June 2026/27</option>
 </select>
 </div>
  
@@ -58,7 +58,10 @@
  
       <div class="col-md-3">
 <label class="form-label">Status</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>Active</option>
+<option>Inactive</option>
+</select>
 </div>
  
       <div class="col-md-3">
@@ -73,17 +76,28 @@
  
       <div class="col-md-3">
 <label class="form-label">Class</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>Kindergarten</option>
+<option>Grade 1</option>
+<option>Grade 2</option>
+</select>
 </div>
  
       <div class="col-md-3">
 <label class="form-label">Section</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>A</option>
+<option>B</option>
+<option>C</option>
+</select>
 </div>
  
       <div class="col-md-3">
 <label class="form-label">Gender</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>Male</option>
+<option>Female</option>
+</select>
 </div>
  
       <div class="col-md-3">
@@ -93,22 +107,45 @@
  
       <div class="col-md-3">
 <label class="form-label">Blood Group</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+<option>O+</option>
+<option>O-</option>
+</select>
 </div>
  
       <div class="col-md-3">
 <label class="form-label">House</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>House A</option>
+<option>House B</option>
+<option>House C</option>
+</select>
 </div>
  
       <div class="col-md-3">
 <label class="form-label">Religion</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>Hindu</option>
+<option>Islam</option>
+<option>Christian</option>
+<option>Sikh</option>
+</select>
 </div>
  
       <div class="col-md-3">
 <label class="form-label">Category</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>General</option>
+<option>OBC</option>
+<option>SC</option>
+<option>ST</option>
+</select>
 </div>
  
       <div class="col-md-3">
@@ -128,10 +165,14 @@
  
       <div class="col-md-3">
 <label class="form-label">Mother Tongue</label>
-<select class="form-select"><option>Select</option></select>
+<select class="form-select"><option>Select</option>
+<option>English</option>
+<option>Hindi</option>
+<option>Spanish</option>
+</select>
 </div>
  
-      <!-- Language Known (Tags UI) -->
+      
 <div class="col-md-3">
   <label class="form-label">Language Known</label>
 
@@ -157,17 +198,17 @@
   </div>
 </div>
 
-    <!-- Parents & Guardian Information -->
+    
     <div class="card mb-3">
       <div class="card-header">Parents & Guardian Information</div>
       <div class="card p-3 mb-4">
  
-  <!-- Father Info -->
+  
 <h5 class="mb-3">Father's Info</h5>
  
  <div class="d-flex align-items-center gap-3 mb-4">
  
-      <!-- Image Box -->
+    
 <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
 <img *ngIf="fatherImage" [src]="fatherImage" alt="Father Image"
      style="width:100%;height:100%;object-fit:cover;">
@@ -191,13 +232,13 @@
 <div class="col-md-3"><input class="form-control" placeholder="Phone Number"></div>
 <div class="col-md-3"><input class="form-control" placeholder="Father Occupation"></div>
 </div>
- 
+ <hr style="color: rgb(195, 195, 195);">
   
 <h5 class="mb-3">Mother's Info</h5>
  
   <div class="d-flex align-items-center gap-3 mb-4">
  
-      <!-- Image Box -->
+      
 <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
 <img *ngIf="motherImage" [src]="motherImage" alt="Mother Image"
      style="width:100%;height:100%;object-fit:cover;">
@@ -222,7 +263,7 @@
 <div class="col-md-3"><input class="form-control" placeholder="Mother Occupation"></div>
 </div>
  
- 
+ <hr style="color: rgb(195, 195, 195);">
 <h5 class="mb-3">Guardian Details</h5>
  
   <div class="mb-3">
@@ -234,7 +275,7 @@
  
   <div class="d-flex align-items-center gap-3 mb-4">
  
-      <!-- Image Box -->
+     
 <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
 <img *ngIf="guardianImage" [src]="guardianImage" alt="Guardian Image"
      style="width:100%;height:100%;object-fit:cover;">
@@ -270,31 +311,46 @@
 <div class="card-body">
  
     <div class="mb-3">
-<label class="me-3">Is Sibling studying in same school</label>
-<input type="radio" name="sibling" checked> Yes
-<input type="radio" name="sibling" class="ms-3"> No
+  <label class="me-3">Is Sibling studying in same school</label>
+
+  <input 
+    type="radio" 
+    formControlName="hasSiblings" 
+    value="yes"> Yes
+
+  <input 
+    type="radio" 
+    formControlName="hasSiblings" 
+    value="no" 
+    class="ms-3"> No
 </div>
  
- <div formArrayName="siblings">
+ <div formArrayName="siblings"
+     *ngIf="studentForm.get('hasSiblings')?.value === 'yes'">
 
   <div *ngFor="let sib of siblings.controls; let i = index"
-       [formGroupName]="i" class="d-flex align-items-center gap-3 mb-3">
+       [formGroupName]="i"
+       class="d-flex align-items-center gap-3 mb-3">
 
     <input formControlName="name" placeholder="Name">
     <input formControlName="rollNo" placeholder="Roll No">
     <input formControlName="admissionNo" placeholder="Admission No">
     <input formControlName="class" placeholder="Class">
 
-    <button type="button" (click)="removeSibling(i)" style="display: flex; text-align: end;"><i class="bi bi-trash"></i></button>
+    <button type="button" (click)="removeSibling(i)">
+      <i class="bi bi-trash"></i>
+    </button>
 
   </div>
-
 </div>
 
 
 
  
-    <button class="btn btn-primary btn-sm" (click)="addSibling()">
+<button 
+  class="btn btn-primary btn-sm" 
+  (click)="addSibling()"
+  [disabled]="studentForm.get('hasSiblings')?.value !== 'yes'">
   + Add New
 </button>
  
@@ -326,19 +382,19 @@
  
   <div class="card-body row g-3">
 <div class="col-md-4">
-<select class="form-select"><option>Route</option>
+<select class="form-select"><option>Select</option>
 <option> Route 1</option>
 <option> Route 2</option>
 </select>
 </div>
 <div class="col-md-4">
-<select class="form-select"><option>Vehicle Number</option>
+<select class="form-select"><option>Select</option>
 <option> Vehicle 1</option>
 <option> Vehicle 2</option>
 </select>
 </div>
 <div class="col-md-4">
-<select class="form-select"><option>Pickup Point</option>
+<select class="form-select"><option>Select</option>
 <option> Pickup Point A</option>
 <option> Pickup Point B</option>
 </select>
@@ -355,13 +411,13 @@
  
   <div class="card-body row g-3">
 <div class="col-md-6">
-<select class="form-select"><option>Hostel</option>
+<select class="form-select"><option>Select</option>
 <option> Hostel A</option>
 <option> Hostel B</option>
     </select>
 </div>
 <div class="col-md-6">
-<select class="form-select"><option>Room No</option>
+<select class="form-select"><option>select</option>
 <option> 1</option>
 <option> 2</option>
 <option> 3</option> 
@@ -377,7 +433,7 @@
 
   <div class="card-body row g-4">
 
-    <!-- MEDICAL REPORT -->
+    
     <div class="col-md-6">
       <label class="fw-semibold">Medical Report</label>
 
@@ -397,7 +453,7 @@
       </button>
 
       <div class="mt-2" *ngIf="medicalReportName">
-        🏥 {{ medicalReportName }}
+        <i class="bi bi-file-earmark me-2"></i> {{ medicalReportName }}
       </div>
 
       <div *ngIf="medicalReportFile" class="mt-2">
@@ -405,7 +461,7 @@
       </div>
     </div>
 
-    <!-- DOCUMENT / TC -->
+    
     <div class="col-md-6">
       <label class="fw-semibold">Transfer Certificate / Document</label>
 
@@ -425,7 +481,7 @@
       </button>
 
       <div class="mt-2" *ngIf="documentName">
-        📄 {{ documentName }}
+        <i class="bi bi-file-earmark me-2"></i> {{ documentName }}
       </div>
 
       <div *ngIf="documentFile" class="mt-2">

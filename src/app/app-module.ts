@@ -21,6 +21,12 @@ import { ProfileSettings } from './profile-settings/profile-settings';
 import { Settings } from './settings/settings';
 import { Securitysetings } from './securitysetings/securitysetings';
 import { AddStudent } from './add-student/add-student';
+import { StudentDashboard } from './student-dashboard/student-dashboard';
+import { TeacherDashboard } from './teacher-dashboard/teacher-dashboard';
+import { ParentDashboard } from './parent-dashboard/parent-dashboard';
+import { AddTeacher } from './add-teacher/add-teacher';
+import { AddStaf } from './add-staf/add-staf';
+import { Invoice } from './invoice/invoice';
 // import { AddDetailsPopup } from './add-details-popup/add-details-popup';
 
 @NgModule({
@@ -39,6 +45,12 @@ import { AddStudent } from './add-student/add-student';
     Settings,
     Securitysetings,
     AddStudent,
+    StudentDashboard,
+    TeacherDashboard,
+    ParentDashboard,
+    AddStaf,
+    Invoice,
+    AddTeacher,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [

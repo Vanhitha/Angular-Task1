@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Student } from '../student';
 @Component({
   selector: 'app-add-student',
   standalone: false,
@@ -23,30 +24,30 @@ export class AddStudent implements OnInit {
   medicalReportFile: string | null = null;
   medicalCondition: string = 'Good';
 
-allergies: string[] = ['Allergy', 'Skin Allergy'];
-medications: string[] = ['paracetamol', 'ibuprofen'];
-languages: string[] = ['English', 'Hindi', 'Spanish'];
+allergies: string[] = ['Allergy', 'Skin Allergy', 'Food Allergy', 'Drug Allergy', 'Pollen Allergy', 'Pet Allergy', 'Insect Allergy', 'Mold Allergy', 'Latex Allergy', 'Allergic Rhinitis'];
+medications: string[] = ['paracetamol', 'ibuprofen', 'amoxicillin', 'cetirizine', 'loperamide', 'omeprazole', 'metformin', 'atorvastatin', 'albuterol', 'simvastatin'];
+languages: string[] = ['English', 'Hindi', 'Spanish', 'French', 'German', 'Chinese', 'Japanese', 'Russian', 'Portuguese', 'Arabic'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private studentService: Student) {
 
     this.studentForm = this.fb.group({
-      academicYear: [''],
-      admissionNumber: [''],
-      admissionDate: [''],
-      rollNumber: [''],
-      status: [''],
-      firstName: [''],
-      lastName: [''],
-      class: [''],
-      section: [''],
-      gender: [''],
-      dob: [''],
+      academicYear: ['',[Validators.required]],
+      admissionNumber: ['',[Validators.required]],
+      admissionDate: ['',[Validators.required]],
+      rollNumber: ['',[Validators.required]],
+      status: ['',[Validators.required]],
+      firstName: ['',[Validators.required]],
+      lastName: ['',[Validators.required]],
+      class: ['',[Validators.required]],
+      section: ['',[Validators.required]],
+      gender: ['',[Validators.required]],
+      dob: ['',[Validators.required]],
 
-      fatherName: [''],
-      motherName: [''],
-      guardianName: [''],
+      fatherName: ['',[Validators.required]],
+      motherName: ['',[Validators.required]],
+      guardianName: ['',[Validators.required]],
 
-      currentAddress: [''],
+      currentAddress: ['', Validators.required],
       permanentAddress: [''],
 
       transportEnabled: [false],
@@ -55,41 +56,54 @@ languages: string[] = ['English', 'Hindi', 'Spanish'];
       medicalCondition: ['Good'],
       allergies: [[]],
       medications: [[]],
-
+       hasSiblings: ['yes'],
       siblings: this.fb.array([])
     });
   }
 
   ngOnInit(): void {
     this.loadData();
-  }
+    this.studentForm.get('hasSiblings')?.valueChanges.subscribe(value => {
+    if (value === 'no') {
+      this.siblings.clear();     
+      this.siblings.disable(); 
+    } else {
+      this.siblings.enable();    
+    }
+  });
+}
 
-  // ---------------- FORM ARRAY ----------------
+
+ 
 
   get siblings(): FormArray {
-    return this.studentForm.get('siblings') as FormArray;
-  }
+  return this.studentForm.get('siblings') as FormArray;
+}
 
-  createSibling(): FormGroup {
-    return this.fb.group({
-      name: [''],
-      rollNo: [''],
-      admissionNo: [''],
-      class: ['']
-    });
-  }
+createSibling(): FormGroup {
+  return this.fb.group({
+    name: [''],
+    rollNo: [''],
+    admissionNo: [''],
+    class: ['']
+  });
+}
 
-  addSibling() {
-    this.siblings.push(this.createSibling());
-    this.saveData();
-  }
+addSibling() {
+  if (this.studentForm.get('hasSiblings')?.value !== 'yes') return;
 
-  removeSibling(i: number) {
-    this.siblings.removeAt(i);
-    this.saveData();
-  }
+  this.siblings.push(this.createSibling());
+  this.saveData();
+}
 
-  // ---------------- FILE READER ----------------
+removeSibling(i: number) {
+  if (this.studentForm.get('hasSiblings')?.value !== 'yes') return;
+
+  this.siblings.removeAt(i);
+  this.saveData();
+}
+
+
 
   readFile(file: File, callback: Function) {
     const reader = new FileReader();
@@ -97,7 +111,7 @@ languages: string[] = ['English', 'Hindi', 'Spanish'];
     reader.readAsDataURL(file);
   }
 
-  // ---------------- IMAGE UPLOAD ----------------
+
 
   onStudentFile(event: any) {
     const file = event.target.files[0];
@@ -218,7 +232,7 @@ languages: string[] = ['English', 'Hindi', 'Spanish'];
 }
   
 
-  // ---------------- DOCUMENT UPLOAD ----------------
+  
 
   onDocumentFile(event: any) {
     const file = event.target.files[0];
@@ -244,7 +258,7 @@ removeMedication(item: string) {
   this.medications = this.medications.filter(m => m !== item);
 }
 
-// ADD (optional input support)
+
 addAllergy(value: string) {
   if (value && !this.allergies.includes(value)) {
     this.allergies.push(value);
@@ -270,7 +284,7 @@ addMedication(value: string) {
     });
   }
 
-  // ---------------- PICKER BUTTONS ----------------
+  
 
   openDocumentPicker(input: HTMLInputElement) {
     input.click();
@@ -280,7 +294,7 @@ addMedication(value: string) {
     input.click();
   }
 
-  // ---------------- SAVE / LOAD ----------------
+ 
 
   saveData() {
     const data = this.studentForm.value;
@@ -312,15 +326,34 @@ addMedication(value: string) {
     this.medicalReportName = localStorage.getItem('medicalReportName') || '';
   }
 
-  // ---------------- SUBMIT ----------------
+ 
 
   onSubmit() {
-    this.saveData();
-    console.log('Saved:', this.studentForm.value);
-  }
+  this.saveData();
+
+  const studentData = {
+    ...this.studentForm.value,
+    studentImage: this.studentImage,
+    fatherImage: this.fatherImage,
+    motherImage: this.motherImage,
+    guardianImage: this.guardianImage,
+    documentName: this.documentName,
+    medicalReportName: this.medicalReportName
+  };
+
+  this.studentService.addStudent(studentData);
+
+  console.log('Sent to dashboard:', studentData);
+   this.studentForm.reset();
+    this.siblings.clear();
+
+    this.studentImage = null;
+    this.fatherImage = null;
+    this.motherImage = null;
+    this.guardianImage = null;
+}
 
   resetForm() {
-    localStorage.clear();
     this.studentForm.reset();
     this.siblings.clear();
 
@@ -328,6 +361,9 @@ addMedication(value: string) {
     this.fatherImage = null;
     this.motherImage = null;
     this.guardianImage = null;
+    this.documentName = '';
+    this.medicalReportName = '';  
+
   }
 }
 

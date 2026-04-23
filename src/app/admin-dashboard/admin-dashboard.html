@@ -131,155 +131,114 @@
 
    
     <div class="col-md-6">
-      <div class="card p-3">
-        <div class="container py-4">
+  <div class="card p-3">
+    <div class="container py-4">
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h5 class="mb-0">Schedules</h5>
-    <button class="btn btn-sm btn text-primary">+ Add New</button>
-  </div>
-
- 
-  <div class="card shadow-sm">
-    <div class="card-body">
-
-   
-      <div class="d-flex justify-content-between align-items-center mb-5">
-        <button class="btn btn-sm btn-outline-secondary">&lt;</button>
-        <h6 class="mb-0">April 2026</h6>
-        <button class="btn btn-sm btn-outline-secondary">&gt;</button>
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Schedules</h5>
+        <button class="btn btn-sm text-primary">+ Add New</button>
       </div>
 
-     
-      <div class="row text-center fw-semibold mb-2">
-        <div class="col">Su</div>
-        <div class="col">Mo</div>
-        <div class="col">Tu</div>
-        <div class="col">We</div>
-        <div class="col">Th</div>
-        <div class="col">Fr</div>
-        <div class="col">Sa</div>
-      </div>
+      <!-- Calendar Card -->
+      <div class="card shadow-sm">
+        <div class="card-body">
 
-      
-      <div class="row text-center mb-2">
-        <div class="col text-muted">29</div>
-        <div class="col text-muted">30</div>
-        <div class="col text-muted">31</div>
-        <div class="col">1</div>
-        <div class="col">2</div>
-        <div class="col">3</div>
-        <div class="col">4</div>
-      </div>
+          <!-- Month Navigation -->
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <button (click)="prevMonth()" class="btn btn-sm btn-outline-secondary">&lt;</button>
 
-    
-      <div class="row text-center mb-2">
-        <div class="col">5</div>
-        <div class="col">6</div>
-        <div class="col">
-          <button class="btn btn-primary btn-sm w-100">7</button>
-        </div>
-        <div class="col">8</div>
-        <div class="col">9</div>
-        <div class="col">10</div>
-        <div class="col">11</div>
-      </div>
+            <h6 class="mb-0">
+              {{ currentDate | date: 'MMMM yyyy' }}
+            </h6>
 
-     
-      <div class="row text-center mb-2">
-        <div class="col">12</div>
-        <div class="col">13</div>
-        <div class="col">14</div>
-        <div class="col">15</div>
-        <div class="col">16</div>
-        <div class="col">17</div>
-        <div class="col">18</div>
-      </div>
-
-      
-      <div class="row text-center mb-2">
-        <div class="col">19</div>
-        <div class="col">20</div>
-        <div class="col">21</div>
-        <div class="col">22</div>
-        <div class="col">23</div>
-        <div class="col">24</div>
-        <div class="col">25</div>
-      </div>
-
-      
-      <div class="row text-center">
-        <div class="col">26</div>
-        <div class="col">27</div>
-        <div class="col">28</div>
-        <div class="col">29</div>
-        <div class="col">30</div>
-        <div class="col text-muted">1</div>
-        <div class="col text-muted">2</div>
-      </div>
-
-      <div class="row text-center">
-        <div class="col  text-muted">3</div>
-        <div class="col  text-muted">4</div>
-        <div class="col  text-muted">5</div>
-        <div class="col  text-muted">6</div>
-        <div class="col  text-muted">7</div>
-        <div class="col text-muted">8</div>
-        <div class="col text-muted">9</div>
-      </div>
-
-
-    </div>
-
-  </div>
-<div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
-  <h5 class="mb-3 fw-bold">Upcoming Events</h5>
-
-  <div *ngFor="let event of events" class="event-item d-flex mb-3">
-    
-    <div class="event-line me-3" [ngClass]="event.color"></div>
-
-    
-    <div class="flex-grow-1">
-      
-     
-      <div class="d-flex justify-content-between align-items-start">
-        
-      
-        <div class="d-flex gap-2 align-items-start">
-          <div class="event-icon bg-light rounded-3 d-flex justify-content-center align-items-center">
-            <i class="bi bi-calendar2-event text-primary"></i>
+            <button (click)="nextMonth()" class="btn btn-sm btn-outline-secondary">&gt;</button>
           </div>
 
-          <div>
-            <h6 class="mb-1 fw-semibold">{{ event.title }}</h6>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid text-center">
+
+            <!-- Day Names -->
+            <div class="day-name" *ngFor="let d of ['Su','Mo','Tu','We','Th','Fr','Sa']" style="display: inline-block; width: 14.285714285714286%;">
+              {{ d }}
+            </div>
+
+            <!-- Dates -->
+            <div class="day-cell" *ngFor="let day of days" style="display: inline-block; width: 14.285714285714286%; padding: 5px;">
+              
+              <button
+                *ngIf="!day.inactive && day.date"
+                class="btn btn-sm w-100 h-100"
+                [ngClass]="{'btn-primary': day.date === 7}"
+              >
+                {{ day.date }}
+              </button>
+
+              <span *ngIf="day.inactive || !day.date" class="text-muted" >
+                {{ day.date }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
+        <h5 class="mb-3 fw-bold">Upcoming Events</h5>
+
+        <div *ngFor="let event of events" class="event-item d-flex mb-3">
+
+          <!-- Left color line -->
+          <div class="event-line me-3" [ngClass]="event.color"></div>
+
+          <!-- Content -->
+          <div class="flex-grow-1">
+
+            <div class="d-flex justify-content-between align-items-start">
+
+              <div class="d-flex gap-2 align-items-start">
+
+                <div class="event-icon bg-light rounded-3 d-flex justify-content-center align-items-center">
+                  <i class="bi bi-calendar2-event text-primary"></i>
+                </div>
+
+                <div>
+                  <h6 class="mb-1 fw-semibold">{{ event.title }}</h6>
+                  <small class="text-muted">
+                    <i class="bi bi-calendar"></i>
+                    {{ event.date }}
+                  </small>
+                </div>
+
+              </div>
+
+              <!-- Users -->
+              <div class="avatar-group">
+                <img *ngFor="let img of event.users"
+                     [src]="img"
+                     class="avatar"
+                     style="height: 20px; width: 20px; border-radius: 50%;" />
+              </div>
+
+            </div>
+
+            <hr class="my-2">
+
             <small class="text-muted">
-              <i class="bi bi-calendar"></i>
-              {{ event.date }}
+              <i class="bi bi-clock"></i>
+              {{ event.time }}
             </small>
-          </div>
-        </div>
 
-      
-        <div class="avatar-group">
-          <img *ngFor="let img of event.users" [src]="img" class="avatar" style="height: 20px; width: 20px; border-radius: 50%;" />
+          </div>
         </div>
       </div>
 
-      
-      <hr class="my-2">
-
-     
-      <small class="text-muted">
-        <i class="bi bi-clock"></i>
-        {{ event.time }}
-      </small>
     </div>
   </div>
 </div>
-</div>
-      </div>
-      </div>
 
     
     <div class="col-md-6">

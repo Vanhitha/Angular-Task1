@@ -1,0 +1,151 @@
+
+<div class="container mt-4">
+  <h3 class="mb-4">Add Teacher</h3>
+
+  <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+
+    <!-- ================= PERSONAL INFO ================= -->
+    <div class="card mb-4">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-person me-2"></i> Personal Information
+      </div>
+
+      <div class="card-body">
+
+        <div class="d-flex align-items-center gap-3 mb-4">
+
+          <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
+            <img *ngIf="teacherImage" [src]="teacherImage"
+                 style="width:100%;height:100%;object-fit:cover;">
+            <i *ngIf="!teacherImage" class="bi bi-image"></i>
+          </div>
+
+          <div>
+            <input type="file" (change)="onTeacherFile($event)">
+            <button type="button" class="btn btn-primary btn-sm me-2" (click)="uploadTeacherImage()">Upload</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeTeacherImage()">Remove</button>
+          </div>
+
+        </div>
+
+        <div class="row g-3">
+
+          <div class="col-md-3">
+            <label>Employee ID</label>
+            <input class="form-control" formControlName="employeeId">
+          </div>
+
+          <div class="col-md-3">
+            <label>First Name</label>
+            <input class="form-control" formControlName="firstName">
+          </div>
+
+          <div class="col-md-3">
+            <label>Last Name</label>
+            <input class="form-control" formControlName="lastName">
+          </div>
+
+          <div class="col-md-3">
+            <label>Gender</label>
+            <select class="form-select" formControlName="gender">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control" formControlName="dob">
+          </div>
+
+          <div class="col-md-3">
+            <label>Phone</label>
+            <input class="form-control" formControlName="phone">
+          </div>
+
+          <div class="col-md-3">
+            <label>Email</label>
+            <input class="form-control" formControlName="email">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PROFESSIONAL INFO ================= -->
+    <div class="card mb-4">
+      <div class="card-header bg-light fw-semibold">
+        Professional Information
+      </div>
+
+      <div class="card-body row g-3">
+
+        <div class="col-md-3">
+          <label>Qualification</label>
+          <input class="form-control" formControlName="qualification">
+        </div>
+
+        <div class="col-md-3">
+          <label>Experience (Years)</label>
+          <input class="form-control" formControlName="experience">
+        </div>
+
+        <div class="col-md-3">
+          <label>Subject</label>
+          <input class="form-control" formControlName="subject">
+        </div>
+
+        <div class="col-md-3">
+          <label>Joining Date</label>
+          <input type="date" class="form-control" formControlName="joiningDate">
+        </div>
+
+        <div class="col-md-3">
+          <label>Salary</label>
+          <input class="form-control" formControlName="salary">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= ADDRESS ================= -->
+    <div class="card mb-4">
+      <div class="card-header bg-light fw-semibold">Address</div>
+
+      <div class="card-body row g-3">
+
+        <div class="col-md-6">
+          <input class="form-control" formControlName="currentAddress" placeholder="Current Address">
+        </div>
+
+        <div class="col-md-6">
+          <input class="form-control" formControlName="permanentAddress" placeholder="Permanent Address">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= DOCUMENTS ================= -->
+    <div class="card mb-4">
+      <div class="card-header bg-light fw-semibold">Documents</div>
+
+      <div class="card-body">
+
+        <input type="file" (change)="onDocumentFile($event)">
+
+        <div *ngIf="documentName" class="mt-2">
+          {{ documentName }}
+        </div>
+
+      </div>
+    </div>
+
+   
+    <div class="d-flex justify-content-end gap-2 mb-4">
+      <button type="button" class="btn btn-light" (click)="resetForm()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Add Teacher</button>
+    </div>
+
+  </form>
+</div>

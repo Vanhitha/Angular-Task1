@@ -14,6 +14,11 @@ import { Settings } from './settings/settings';
 import { Notifications } from './notifications/notifications';
 import { Securitysetings } from './securitysetings/securitysetings';
 import { AddStudent } from './add-student/add-student';
+import { AddTeacher } from './add-teacher/add-teacher';
+import { StudentDashboard } from './student-dashboard/student-dashboard';
+import { AddStaf } from './add-staf/add-staf';
+import { TeacherDashboard } from './teacher-dashboard/teacher-dashboard';
+import { ParentDashboard } from './parent-dashboard/parent-dashboard';
 
 const routes: Routes = [
   {path:"",component:Login},
@@ -23,7 +28,12 @@ const routes: Routes = [
  
   {path:"home",component:Home ,children: [
       { path: 'admindashboard', component: AdminDashboard },
+      {path:"teacherdashboard",component:TeacherDashboard},
+      { path: 'studentdashboard', component: StudentDashboard },
+      {path :"parentdashboard",component:ParentDashboard},
       {path:"add-student",component:AddStudent},
+      {path:"add-teacher",component:AddTeacher},
+      {path:"add-staf",component:AddStaf},
        {path:"myprofile",component:Myprofile},
        {path:"settings",component:Settings,children:[
          {path:"profile-settings",component:ProfileSettings},

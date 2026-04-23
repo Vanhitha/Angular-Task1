@@ -1,0 +1,47 @@
+<div class="container mt-4" >
+
+  <h3>Teachers ({{ teachers.length }})</h3>
+
+  <!-- CARDS -->
+  <div class="row">
+
+    <div class="col-md-4 mb-3" *ngFor="let t of teachers">
+
+      <div class="card shadow p-3 w-100 d-flex flex-column" (click)="selectTeacher(t)" style="cursor:pointer;">
+
+        <div class="d-flex align-items-center gap-2">
+
+          <img *ngIf="t.teacherImage"
+               [src]="t.teacherImage"
+               style="width:50px;height:50px;border-radius:50%;object-fit:cover;">
+
+          <div>
+            <h6 class="mb-0">{{ t.firstName }} {{ t.lastName }}</h6>
+            <small>{{ t.subject }}</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- DETAILS CARD -->
+  <div *ngIf="selectedTeacher" class="card mt-4 p-3 shadow">
+
+    <h4>Teacher Details</h4>
+
+    <p><b>Name:</b> {{ selectedTeacher.firstName }} {{ selectedTeacher.lastName }}</p>
+    <p><b>Employee ID:</b> {{ selectedTeacher.employeeId }}</p>
+    <p><b>Gender:</b> {{ selectedTeacher.gender }}</p>
+    <p><b>Phone:</b> {{ selectedTeacher.phone }}</p>
+    <p><b>Email:</b> {{ selectedTeacher.email }}</p>
+    <p><b>Subject:</b> {{ selectedTeacher.subject }}</p>
+    <p><b>Experience:</b> {{ selectedTeacher.experience }} years</p>
+    <p><b>Salary:</b> {{ selectedTeacher.salary }}</p>
+
+  </div>
+
+</div>
