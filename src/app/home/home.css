@@ -1,0 +1,9 @@
+/* smooth movement */
+.content-area {
+  transition: margin-top 0.4s ease;
+}
+
+/* push down when menu opens */
+.content-push {
+  margin-top: 100px !important; /* adjust if needed */
+}

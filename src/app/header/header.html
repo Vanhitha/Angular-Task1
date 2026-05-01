@@ -1,121 +1,113 @@
-<div class="bg-white border-bottom px-4 py-2 d-flex justify-content-between align-items-center shadow-sm fixed-top" style="height:56px;  margin-left: 280px;">
+<div class=" border-bottom px-4 py-2 d-flex justify-content-between align-items-center shadow-sm fixed-top"
+     style="height:56px; margin-left: 280px;">
 
-  
+  <!-- LEFT SIDE -->
   <div class="d-flex align-items-center gap-3 w-50">
 
-  
     <input 
       type="text" 
       class="form-control rounded-pill px-3 w-50" 
       placeholder="Search..."
     />
 
-    
     <span class="badge bg-light text-dark border px-3 py-2 fw-normal">
       &#128197; Academic Year : 2026 / 2027
     </span>
 
   </div>
 
-  
+  <!-- RIGHT SIDE -->
   <div class="d-flex align-items-center gap-2">
+   
 
-    
-    <button class="btn btn-light border d-flex align-items-center justify-content-center">
-      <img src="https://images6.alphacoders.com/911/911295.png" 
-           alt="Flag" 
-           class="rounded-circle" 
-           width="22" height="22"/>
+        <!-- FLAG -->
+        <button class="btn btn-light border flag-btn d-flex align-items-center justify-content-center">
+          <img src="https://images6.alphacoders.com/911/911295.png"
+               class=""
+               width="35" height="35"/>
+        </button>
+
+        <!-- PROFILE -->
+        <div class="dropdown-center">
+          <button class="btn btn-light profile-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <img [src]="user?.profileImage"
+                 class=""
+                 width="35"
+                 height="35" />
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/home/myprofile">My Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/home/settings">Settings</a></li>
+            <li><a class="dropdown-item" routerLink="/login">Logout</a></li>
+          </ul>
+        </div>
+    <!-- HAMBURGER -->
+    <button class="btn btn-light border" (click)="toggleMenu()">
+      <i class="bi bi-list"></i>
     </button>
 
-   
-    <div class="dropdown">
-  <button class="btn btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">
-    <i class="bi bi-plus-circle"></i>
-  </button>
-
-  <div class="dropdown-menu p-3" style="min-width: 250px;">
-    <h3 class="dropdown-header">Add New</h3>
-      <hr>
-    
-    <div class="d-flex flex-wrap gap-2">
-      
-    <a routerLink="/home/add-new/add-student" class="flex-fill text-center" style="width: 48%; background-color: rgb(236, 235, 255); padding: 15px; text-decoration: none; color: inherit;">
-         <div class="Student-logo" style="background-color: rgb(54, 63, 244); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-          <i class="bi bi-mortarboard fs-4 text-white"></i>
-        </div>
-        <div>Students</div>
-      </a> 
-      
-     
-      <a routerLink="/home/add-new/add-teacher" class="flex-fill text-center" style="width: 48%; background-color: rgb(237, 247, 237); padding: 15px; text-decoration: none; color: inherit;">
-         <div class="Teacher-logo" style="background-color: rgb(76, 175, 80); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-          <i class="bi bi-people fs-4 text-white"></i>
-        </div>
-        <div>Teachers</div>
-      </a> 
+    <!-- SLIDING MENU -->
+    <div class="header-menu" [class.open]="isMenuOpen">
       
 
-   <a routerLink="/home/add-new/add-staf" class="flex-fill text-center" style="width: 48%; background-color: rgb(255, 243, 224); padding: 15px; text-decoration: none; color: inherit;">
-         <div class="Staff-logo" style="background-color: rgb(255, 152, 0); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-          <i class="bi bi-people-fill fs-4 text-white"></i>
-        </div>
-        <div>Staffs</div>
-      </a>
+      <!-- ACTION BUTTONS -->
+      <div class="d-flex align-items-center gap-2 flex-wrap">
 
-      
-      <div class="flex-fill text-center" style="width: 48%; background-color: rgb(227, 242, 253); padding: 15px;">
-         <div class="Invoice-logo" style="background-color: rgb(33, 150, 243); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-          <i class="bi bi-receipt fs-4 text-white"></i>
+        <!-- ADD NEW DROPDOWN -->
+        <div class="dropdown">
+          <button class="btn btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-plus-circle"></i>
+          </button>
+
+          <div class="dropdown-menu p-3" style="min-width: 250px;">
+            <h3 class="dropdown-header">Add New</h3>
+            <hr>
+
+            <div class="d-flex flex-wrap gap-2">
+
+              <a routerLink="/home/add-new/add-student" class="dashboard-card flex-fill text-center">
+                <div class="icon-circle">
+                  <i class="bi bi-mortarboard fs-4"></i>
+                </div>
+                <div>Students</div>
+              </a>
+
+              <a routerLink="/home/add-new/add-teacher" class="dashboard-card flex-fill text-center">
+                <div class="icon-circle">
+                  <i class="bi bi-people fs-4"></i>
+                </div>
+                <div>Teachers</div>
+              </a>
+
+              <a routerLink="/home/add-new/add-staf" class="dashboard-card flex-fill text-center">
+                <div class="icon-circle">
+                  <i class="bi bi-people-fill fs-4"></i>
+                </div>
+                <div>Staffs</div>
+              </a>
+
+              <div class="dashboard-card flex-fill text-center">
+                <div class="icon-circle">
+                  <i class="bi bi-receipt fs-4"></i>
+                </div>
+                <div>Invoice</div>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <div>Invoice</div>
+
+        <!-- OTHER ICONS -->
+        <button class="btn btn-light border"><i class="bi bi-moon"></i></button>
+        <button class="btn btn-light border"><i class="bi bi-bell"></i></button>
+        <button class="btn btn-light border"><i class="bi bi-chat-dots"></i></button>
+        <button class="btn btn-light border"><i class="bi bi-bar-chart"></i></button>
+        <button class="btn btn-light border"><i class="bi bi-arrows-fullscreen"></i></button>
+
       </div>
 
     </div>
-
-  </div>
-</div>
-
-    
-    <button class="btn btn-light border">
-      <i class="bi bi-moon"></i>
-    </button>
-
-    
-    <div class="position-relative">
-      <button class="btn btn-light border">
-        <i class="bi bi-bell"></i>
-      </button>
-      
-    </div>
-
-    
-    <button class="btn btn-light border">
-      <i class="bi bi-chat-dots"></i>
-    </button>
-
-   
-    <button class="btn btn-light border">
-      <i class="bi bi-bar-chart"></i>
-    </button>
-
-    
-    <button class="btn btn-light border">
-      <i class="bi bi-arrows-fullscreen"></i>
-    </button>
-     <div class="dropdown-center">
-  <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" >
-  <img [src]="user?.profileImage "
-     class="rounded-circle"
-     width="22"
-     height="22" />
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" routerLink="/home/myprofile">My Profile</a></li>
-    <li><a class="dropdown-item" routerLink="/home/settings">Settings</a></li>
-    <li><a class="dropdown-item" routerLink="/login">Logout</a></li>
-  </ul>
-</div>
 
   </div>
 

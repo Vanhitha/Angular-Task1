@@ -1,3 +1,112 @@
+
 .dropdown-toggle::after {
   display: none;
+}
+
+.profile-btn {
+  padding: 0;
+}
+.flag-btn{
+  padding: 0%;
+}
+
+
+.header-menu {
+  position: absolute;
+  top: 56px;
+  right: 10px;
+
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  z-index: 1050;
+
+  /* hidden state */
+  opacity: 0;
+  transform: translateY(-15px);
+  pointer-events: none;
+
+  /* IMPORTANT: transform + opacity transition */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* open state */
+.header-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+.btn-light {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.dashboard-card {
+  width: 48%;
+  padding: 15px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+
+  display: block;
+
+  opacity: 0;
+  transform: translateY(20px);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown-menu.show .dashboard-card {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: auto;
+  background-color: rgb(246,236,221);
+}
+
+
+@keyframes fadeUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* stagger effect */
+.dropdown-menu.show .dashboard-card:nth-child(1) { animation-delay: 0.2s; }
+.dropdown-menu.show .dashboard-card:nth-child(2) { animation-delay: 0.4s; }
+.dropdown-menu.show .dashboard-card:nth-child(3) { animation-delay: 0.6s; }
+.dropdown-menu.show .dashboard-card:nth-child(4) { animation-delay: 0.8s; }
+
+.dropdown-menu {
+  min-width: 140px;   /* or 200px */
+  width: auto;        /* 🔥 IMPORTANT */
+
+  padding: 10px;
+  border-radius: 10px;
+
+  opacity: 0;
+  transform: translateY(10px);
+
+  transition: all 0.3s ease;
+}
+
+/* SHOW STATE */
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
 }

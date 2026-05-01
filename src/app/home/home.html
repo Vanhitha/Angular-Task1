@@ -1,7 +1,7 @@
 <div class="d-flex">
 
   <!-- Sidebar -->
-  <div class="position-fixed top-0 start-0 vh-100 bg-white border-end" style="width: 280px;">
+  <div class="position-fixed top-0 start-0 vh-100  border-end shadow-sm" style="width: 280px;">
     <app-sidebar></app-sidebar>
   </div>
 
@@ -9,13 +9,21 @@
   <div class="flex margin-right-280" style="width: 100%;">
 
     <!-- Header -->
-    <app-header></app-header>
+    <app-header (menuToggle)="isMenuOpen = $event"></app-header>
 
     <!-- Page Content -->
-    <div class="p-3 mt-5" style="margin-left: 280px;">
+    <!-- <div class="p-3 mt-5" style="margin-left: 280px;">
      
       <router-outlet></router-outlet>
-    </div>
+    </div> -->
+
+    <div class="p-3"
+     [class.content-push]="isMenuOpen"
+     style="margin-left: 280px; margin-top: 56px;">
+
+  <router-outlet></router-outlet>
+
+</div>
 
   </div>
 

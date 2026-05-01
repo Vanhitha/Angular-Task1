@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { Inject, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../user-service';
 
 @Component({
@@ -12,11 +10,23 @@ import { UserService } from '../user-service';
 export class Header {
   user: any;
 
-constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {}
 
-ngOnInit(): void {
-  this.userService.user$.subscribe((user: any) => {
-    this.user = user;
-  });
-}
+  ngOnInit(): void {
+    this.userService.user$.subscribe((user: any) => {
+      this.user = user;
+    });
+  }
+
+  isMenuOpen = false;
+
+  /* 🔥 ADD THIS */
+  @Output() menuToggle = new EventEmitter<boolean>();
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+
+    /* 🔥 SEND STATE TO HOME */
+    this.menuToggle.emit(this.isMenuOpen);
+  }
 }

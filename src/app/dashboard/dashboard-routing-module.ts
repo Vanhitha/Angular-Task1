@@ -4,6 +4,7 @@ import { AdminDashboard } from './admin-dashboard/admin-dashboard';
 import { TeacherDashboard } from './teacher-dashboard/teacher-dashboard';
 import { StudentDashboard } from './student-dashboard/student-dashboard';
 import { ParentDashboard } from '../parent-dashboard/parent-dashboard';
+import { WelcomePage } from './welcome-page/welcome-page';
 
 
 const routes: Routes = [

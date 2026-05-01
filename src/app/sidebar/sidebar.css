@@ -1,3 +1,111 @@
-.active{
- color: blue !important;
+
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  padding: 15px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Logo text styling */
+.logo-text {
+  font-weight: 700;
+  color: #4f46e5;
+  display: inline-block;
+
+  /* animation */
+  animation: floatLogo 10s;
+}
+
+/* Floating animation */
+@keyframes floatLogo {
+  0% {
+    transform: translateY(0px);
+    text-shadow: 0 0 0px rgba(251, 172, 129, 0.3);
+  }
+  50% {
+    transform: translateY(-4px);
+    text-shadow: 0 8px 20px rgba(250, 142, 146, 0.4);
+  }
+  100% {
+    transform: translateY(0px);
+    text-shadow: 0 0 0px rgba(70, 229, 94, 0.3);
+  }
+}
+
+/* Section titles */
+.section-title {
+  font-size: 12px;
+  color: #999;
+  margin: 15px 10px 5px;
+}
+
+/* Main links */
+.main-link {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #333;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover effect */
+.main-link:hover {
+  background: #f3f4ff;
+  color: #4f46e5;
+  transform: translateX(4px);
+}
+
+/* Active */
+.main-link.active {
+  color: green;
+}
+
+/* Submenu */
+.submenu {
+  padding-left: 10px;
+}
+
+/* Sub links */
+.sub-link {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #555;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+/* Hover animation */
+.sub-link:hover {
+  background: #eef2ff;
+  color: #4f46e5;
+  transform: translateX(6px);
+}
+
+/* Active sublink */
+.sub-link.active {
+  background: #e0e7ff;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* Arrow animation */
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when open */
+.collapse.show + .arrow,
+.main-link[aria-expanded="true"] .arrow {
+  transform: rotate(180deg);
+}
+
+/* Smooth collapse animation override */
+.collapse {
+  transition: height 0.3s ease;
 }

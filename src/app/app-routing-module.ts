@@ -13,6 +13,7 @@ import { ProfileSettings } from './profile-settings/profile-settings';
 import { Settings } from './settings/settings';
 import { Notifications } from './notifications/notifications';
 import { Securitysetings } from './securitysetings/securitysetings';
+import { WelcomePage } from './dashboard/welcome-page/welcome-page';
 const routes: Routes = [
   {path:"",component:Login},
   {path:"register",component:Register},
@@ -20,7 +21,12 @@ const routes: Routes = [
   {path:"login",component:Login},
  
  
-  {path:"home",component:Home ,children: [
+  {path:"home",component:Home,children: [
+
+    {
+      path: "",
+      component: WelcomePage
+    },
     { path:"dashboard",
       loadChildren:()=>
         import('./dashboard/dashboard-module').then((m)=>m.DashboardModule)
